@@ -40,6 +40,11 @@ def get_artist_data(artist_link: str) -> requests.models.Response:
     return make_req('artists', artist_link)
 
 
+def get_track(id_track: str) -> requests.models.Response:
+
+    return make_req('tracks', id_track)
+
+
 def get_audio_features(id_musica: str) -> requests.models.Response:
 
     return make_req('audio-features', id_musica)
@@ -62,6 +67,13 @@ def main():
     # print(token)
 
 
+    # Pega os dados de música
+    id_musica = '45Egmo7icyopuzJN0oMEdk?si=51fe34b203e24654'
+
+    track = get_track(id_musica)
+    print(track.json())
+
+
     # 1. Pega os dados do Hungria Hip Hop
     # artist_link = '0vLuOi2k62sHujIfplInlK?si=9ru2dX1nTRuRg_iLOjh1JA'
 
@@ -70,10 +82,10 @@ def main():
     
 
     # 2. Pega os dados de uma música - Crawling, Linkin Park
-    id_musica = '57BrRMwf9LrcmuOsyGilwr?si=bcfb65883f374f6c'
+    # id_musica = '57BrRMwf9LrcmuOsyGilwr?si=bcfb65883f374f6c'
 
-    musica_req = get_audio_features(id_musica)
-    pprint.pprint(musica_req.json())
+    # musica_req = get_audio_features(id_musica)
+    # pprint.pprint(musica_req.json())
 
 
     # 3. Pegar os dados de uma playlist, Ficar Tranquilo
