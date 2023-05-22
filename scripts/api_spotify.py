@@ -61,6 +61,20 @@ def get_playlist(id_playlist: str) -> requests.models.Response:
     return response
 
 
+def get_album(id_album: str) -> requests.models.Response:
+
+    url = f'https://api.spotify.com/v1/albums/{id_album}'
+
+    headers = {
+        'Authorization': f'Bearer {API_TOKEN}'
+    }
+
+    response = requests.get(url, headers=headers)
+
+    return response
+
+
+
 def main():
     
     # 0. Pega o token da API
@@ -82,25 +96,31 @@ def main():
     # print(musica_req.json())
 
 
-    # 3. Pegar os dados de uma playlist, Fica Tranquilo
-    id_playlist = '2fLIJ2ABXxFLGUjvF34nAQ?si=43bb1b43430b4e82'
+    # 3. Pegar os dados de uma playlist, Ficar Tranquilo
+    # id_playlist = '2fLIJ2ABXxFLGUjvF34nAQ?si=43bb1b43430b4e82'
 
-    playlist_req = get_playlist(id_playlist)
-    # print(playlist_req.json())
+    # playlist_req = get_playlist(id_playlist)
+    # # print(playlist_req.json())
 
-    # 3.1 Pega os dados de uma música da playlist
-    musica_playlist = playlist_req.json()['tracks']['items'][0]
+    # # 3.1 Pega os dados de uma música da playlist
+    # musica_playlist = playlist_req.json()['tracks']['items'][0]
 
-    # 3.1.1 Pega o nome da música
-    nome_musica = musica_playlist['track']['name']
-    print(nome_musica)
+    # # 3.1.1 Pega o nome da música
+    # nome_musica = musica_playlist['track']['name']
+    # print(nome_musica)
 
-    # 3.1.2 Pega o id da música
-    id_musica = musica_playlist['track']['id']
+    # # 3.1.2 Pega o id da música
+    # id_musica = musica_playlist['track']['id']
 
-    # 3.2 Pega os dados de uma música da playlist
-    musica_playlist_features = get_audio_features(id_musica)
-    print(musica_playlist_features.json())   
+    # # 3.2 Pega os dados de uma música da playlist
+    # musica_playlist_features = get_audio_features(id_musica)
+    # print(musica_playlist_features.json())
+
+    # 4. Pegar dados de um album
+    id_album = '3Q9wXhEAX7NYCPP0hxIuDz?si=jg6tLF24QSqCZ4xxWwT9-A'
+
+    album_req = get_album(id_album)
+    print(album_req.json().keys())
 
 
 if __name__ == '__main__':
