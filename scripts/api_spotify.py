@@ -1,10 +1,11 @@
 import os
+import pprint
 
 import requests
 from dotenv import load_dotenv
 
 
-def get_api_token() -> requests.models.Response:
+def get_api_token() -> str:
     url = 'https://accounts.spotify.com/api/token'
 
     payload = {
@@ -22,9 +23,8 @@ def get_api_token() -> requests.models.Response:
     return response.json()['access_token']
 
 
-def get_artist_data(artist_link: str) -> requests.models.Response:
-
-    url = f'https://api.spotify.com/v1/artists/{artist_link}'
+def make_req(route: str, id: str) -> requests.models.Response:
+    url = f'https://api.spotify.com/v1/{route}/{id}'
 
     headers = {
         'Authorization': f'Bearer {API_TOKEN}'
@@ -33,46 +33,26 @@ def get_artist_data(artist_link: str) -> requests.models.Response:
     response = requests.get(url, headers=headers)
 
     return response
+
+
+def get_artist_data(artist_link: str) -> requests.models.Response:
+
+    return make_req('artists', artist_link)
 
 
 def get_audio_features(id_musica: str) -> requests.models.Response:
 
-    url = f'https://api.spotify.com/v1/audio-features/{id_musica}'
-
-    headers = {
-        'Authorization': f'Bearer {API_TOKEN}'
-    }
-
-    response = requests.get(url, headers=headers)
-
-    return response
+    return make_req('audio-features', id_musica)
 
 
 def get_playlist(id_playlist: str) -> requests.models.Response:
 
-    url = f'https://api.spotify.com/v1/playlists/{id_playlist}'
-
-    headers = {
-        'Authorization': f'Bearer {API_TOKEN}'
-    }
-
-    response = requests.get(url, headers=headers)
-
-    return response
+    return make_req('playlists', id_playlist)
 
 
 def get_album(id_album: str) -> requests.models.Response:
 
-    url = f'https://api.spotify.com/v1/albums/{id_album}'
-
-    headers = {
-        'Authorization': f'Bearer {API_TOKEN}'
-    }
-
-    response = requests.get(url, headers=headers)
-
-    return response
-
+    return make_req('albums', id_album)
 
 
 def main():
@@ -90,10 +70,10 @@ def main():
     
 
     # 2. Pega os dados de uma música - Crawling, Linkin Park
-    # id_musica = '57BrRMwf9LrcmuOsyGilwr?si=bcfb65883f374f6c'
+    id_musica = '57BrRMwf9LrcmuOsyGilwr?si=bcfb65883f374f6c'
 
-    # musica_req = get_audio_features(id_musica)
-    # print(musica_req.json())
+    musica_req = get_audio_features(id_musica)
+    pprint.pprint(musica_req.json())
 
 
     # 3. Pegar os dados de uma playlist, Ficar Tranquilo
@@ -117,13 +97,17 @@ def main():
     # print(musica_playlist_features.json())
 
     # 4. Pegar dados de um album
-    id_album = '3Q9wXhEAX7NYCPP0hxIuDz?si=jg6tLF24QSqCZ4xxWwT9-A'
+    # id_album = '3Q9wXhEAX7NYCPP0hxIuDz?si=jg6tLF24QSqCZ4xxWwT9-A'
 
-    album_req = get_album(id_album)
-    print(album_req.json().keys())
+    # album_req = get_album(id_album)
+    # print(album_req.json().keys())
+
+    # popularidade_album = album_req.json()['popularity']
+    # print(popularidade_album)
 
 
 if __name__ == '__main__':
+    os.system('cls')
 
     load_dotenv()
     API_TOKEN = str(os.getenv('API_TOKEN'))
