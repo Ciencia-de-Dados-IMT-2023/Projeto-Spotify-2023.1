@@ -32,12 +32,19 @@ def make_req(route: str, id: str) -> requests.models.Response:
 
     response = requests.get(url, headers=headers)
 
-    return response
+    if response.status_code != 200:
+        print(f'Erro: {response.status_code}')
+        print(f'Erro: {response.json()}')
+        import sys
+        sys.exit(1)
+
+    else:
+        return response
 
 
-def get_artist_data(artist_link: str) -> requests.models.Response:
+def get_artist_data(id_artist: str) -> requests.models.Response:
 
-    return make_req('artists', artist_link)
+    return make_req('artists', id_artist)
 
 
 def get_track(id_track: str) -> requests.models.Response:
@@ -45,9 +52,9 @@ def get_track(id_track: str) -> requests.models.Response:
     return make_req('tracks', id_track)
 
 
-def get_audio_features(id_musica: str) -> requests.models.Response:
+def get_audio_features(id_track: str) -> requests.models.Response:
 
-    return make_req('audio-features', id_musica)
+    return make_req('audio-features', id_track)
 
 
 def get_playlist(id_playlist: str) -> requests.models.Response:
@@ -62,16 +69,79 @@ def get_album(id_album: str) -> requests.models.Response:
 
 def main():
     
-    # 0. Pega o token da API
+    # 0. Get API Token
     # token = get_api_token()
     # print(token)
 
 
-    # Pega os dados de música
+    # 1. Get music data
+    print('1. Music data\n')
     id_musica = '45Egmo7icyopuzJN0oMEdk?si=51fe34b203e24654'
 
     track = get_track(id_musica)
-    print(track.json())
+    audio_features = get_audio_features(id_musica)
+
+    # 1.1 Extracting some information
+    music_name = track.json()['name']
+    duration = track.json()['duration_ms']
+    popularity = track.json()['popularity']
+    release_date = track.json()['album']['release_date']
+    danceability = audio_features.json()['danceability']
+    energy = audio_features.json()['energy']
+    speechiness = audio_features.json()['speechiness']
+
+    print(f'Music name: {music_name}')
+    print(f'Durating: {duration} ms')
+    print(f'Popularity: {popularity}/100')
+    print(f'Release Date: {release_date}')
+    print(f'Danceability: {danceability}')
+    print(f'Energy: {energy}')
+    print(f'Speechiness: {speechiness}')
+
+    
+    # 2. Get artist data
+    print()
+    print('2. Artist data\n')
+    id_artist = track.json()['artists'][0]['id']
+
+    artist = get_artist_data(id_artist)
+
+    # 2.1 Extracting some information
+    artist_name = artist.json()['name']
+    artist_popularity = artist.json()['popularity']
+    artist_followers = artist.json()['followers']['total']
+    artist_genres = artist.json()['genres']
+
+    print(f'Artist Name: {artist_name}')
+    print(f'Artist Popularity: {artist_popularity}/100')
+    print(f'Artist Followers: {artist_followers}')
+    print(f'Artist Genres: {artist_genres}')
+
+
+    # 3. Get album data
+    print()
+    print('3. Album data\n')
+    id_album = track.json()['album']['id']
+
+    album = get_album(id_album)
+
+    # 3.1 Extracting some information
+    album_name = album.json()['name']
+    album_type = album.json()['album_type']
+    album_release_date = album.json()['release_date']
+    album_total_tracks = album.json()['total_tracks']
+    album_popularity = album.json()['popularity']
+
+    print(f'Album Name: {album_name}')
+    print(f'Album Type: {album_type}')
+    print(f'Album Release Date: {album_release_date}')
+    print(f'Album Total Tracks: {album_total_tracks}')
+    print(f'Album Popularity: {album_popularity}/100')
+
+
+
+
+
 
 
     # 1. Pega os dados do Hungria Hip Hop
@@ -80,12 +150,6 @@ def main():
     # hungria_req = get_artist_data(artist_link)
     # print(hungria_req.json())
     
-
-    # 2. Pega os dados de uma música - Crawling, Linkin Park
-    # id_musica = '57BrRMwf9LrcmuOsyGilwr?si=bcfb65883f374f6c'
-
-    # musica_req = get_audio_features(id_musica)
-    # pprint.pprint(musica_req.json())
 
 
     # 3. Pegar os dados de uma playlist, Ficar Tranquilo
