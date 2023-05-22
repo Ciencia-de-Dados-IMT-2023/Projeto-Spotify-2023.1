@@ -1,7 +1,9 @@
-# Projeto-Spotify-2023.1
+# Projeto Spotify - Exploratory Data Analysis
 
-# Dados
+O objetivo do projeto é a construção completa de um EDA (Exploratory Data Analysis) sobre o conjunto de dados da API do spotify. 
 
-## Spotify Million Playlist Dataset Challenge
+## Bases de Dados Utilizadas
 
-https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge/dataset_files
+[Spotify Oficial API](https://developer.spotify.com/documentation/web-api/)
+
+[Spotify Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge/dataset_files)
