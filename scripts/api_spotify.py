@@ -76,7 +76,7 @@ def main():
 
     # 1. Get music data
     print('1. Music data\n')
-    id_musica = '45Egmo7icyopuzJN0oMEdk?si=51fe34b203e24654'
+    id_musica = '1odExI7RdWc4BT515LTAwj?si=a72394989db84d65'
 
     track = get_track(id_musica)
     audio_features = get_audio_features(id_musica)
@@ -153,15 +153,18 @@ def main():
 
 
     # 3. Pegar os dados de uma playlist, Ficar Tranquilo
-    # id_playlist = '2fLIJ2ABXxFLGUjvF34nAQ?si=43bb1b43430b4e82'
+    # id_playlist = '1gCZcgXAbPo85wAwSgy299?si=eee6417f6dcc445d'
 
     # playlist_req = get_playlist(id_playlist)
     # # print(playlist_req.json())
 
     # # 3.1 Pega os dados de uma música da playlist
-    # musica_playlist = playlist_req.json()['tracks']['items'][0]
+    # import json
+    # musica_playlist = playlist_req.json()['tracks']#['items'][0]
+    # with open('a.json', 'w') as file:
+    #     file.write(json.dumps(musica_playlist, indent=4))
 
-    # # 3.1.1 Pega o nome da música
+    # 3.1.1 Pega o nome da música
     # nome_musica = musica_playlist['track']['name']
     # print(nome_musica)
 
@@ -172,7 +175,7 @@ def main():
     # musica_playlist_features = get_audio_features(id_musica)
     # print(musica_playlist_features.json())
 
-    # 4. Pegar dados de um album
+    # # 4. Pegar dados de um album
     # id_album = '3Q9wXhEAX7NYCPP0hxIuDz?si=jg6tLF24QSqCZ4xxWwT9-A'
 
     # album_req = get_album(id_album)
