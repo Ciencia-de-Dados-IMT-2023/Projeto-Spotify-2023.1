@@ -25,37 +25,33 @@ def make_req(route: str, id: str) -> requests.models.Response:
         return response
 
 
-def get_artist_data(id_artist: str) -> requests.models.Response:
+def get_artist_data(id_artist: str) -> dict:
 
-    return make_req('artists', id_artist)
-
-
-def get_track(id_track: str) -> requests.models.Response:
-
-    return make_req('tracks', id_track)
+    return make_req('artists', id_artist).json()
 
 
-def get_audio_features(id_track: str) -> requests.models.Response:
+def get_track(id_track: str) -> dict:
 
-    return make_req('audio-features', id_track)
-
-
-def get_playlist(id_playlist: str) -> requests.models.Response:
-
-    return make_req('playlists', id_playlist)
+    return make_req('tracks', id_track).json()
 
 
-def get_album(id_album: str) -> requests.models.Response:
+def get_audio_features(id_track: str) -> dict:
 
-    return make_req('albums', id_album)
+    return make_req('audio-features', id_track).json()
+
+
+def get_playlist(id_playlist: str) -> dict:
+
+    return make_req('playlists', id_playlist).json()
+
+
+def get_album(id_album: str) -> dict:
+
+    return make_req('albums', id_album).json()
 
 
 def main():
     
-    # 0. Get API Token
-    # token = get_api_token()
-    # print(token)
-
 
     # 1. Get music data
     print('1. Music data\n')
