@@ -78,6 +78,23 @@ def main():
     print(f'Speechiness: {speechiness}')
 
     
+
+    # 5. Get data from mutiple tracks
+    id_musics_list = [
+        '4JiEyzf0Md7KEFFGWDDdCr', 
+        '5CQ30WqJwcep0pYcV4AMNc',
+        '4mn2kNTqiGLwaUR8JdhJ1l',
+        '5HNCy40Ni5BZJFw1TKzRsC',
+        '7o2CTH4ctstm8TNelqjb51'
+        ]
+    id_musics_list = ','.join(id_musics_list)
+    id_musics_list = '?ids=' + id_musics_list
+    
+
+    tracks_list_data = get_track(id_musics_list)
+    print(tracks_list_data['tracks'][0])
+
+    
     # 2. Get artist data
     print()
     print('2. Artist data\n')
@@ -118,8 +135,7 @@ def main():
     print(f'Album Popularity: {album_popularity}/100')
 
 
-
-
+    # 4. Get playlist data
 
 
 
