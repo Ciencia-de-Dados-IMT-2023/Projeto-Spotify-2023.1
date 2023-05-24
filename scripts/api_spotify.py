@@ -55,19 +55,19 @@ def main():
 
     # 1. Get music data
     print('1. Music data\n')
-    id_musica = '1odExI7RdWc4BT515LTAwj?si=a72394989db84d65'
+    id_musica = '6I3mqTwhRpn34SLVafSH7G'
 
     track = get_track(id_musica)
     audio_features = get_audio_features(id_musica)
 
     # 1.1 Extracting some information
-    music_name = track.json()['name']
-    duration = track.json()['duration_ms']
-    popularity = track.json()['popularity']
-    release_date = track.json()['album']['release_date']
-    danceability = audio_features.json()['danceability']
-    energy = audio_features.json()['energy']
-    speechiness = audio_features.json()['speechiness']
+    music_name = track['name']
+    duration = track['duration_ms']
+    popularity = track['popularity']
+    release_date = track['album']['release_date']
+    danceability = audio_features['danceability']
+    energy = audio_features['energy']
+    speechiness = audio_features['speechiness']
 
     print(f'Music name: {music_name}')
     print(f'Durating: {duration} ms')
@@ -79,7 +79,7 @@ def main():
 
     
 
-    # 5. Get data from mutiple tracks
+    # 1.2. Get data from mutiple tracks
     id_musics_list = [
         '4JiEyzf0Md7KEFFGWDDdCr', 
         '5CQ30WqJwcep0pYcV4AMNc',
@@ -98,15 +98,15 @@ def main():
     # 2. Get artist data
     print()
     print('2. Artist data\n')
-    id_artist = track.json()['artists'][0]['id']
+    id_artist = track['artists'][0]['id']
 
     artist = get_artist_data(id_artist)
 
     # 2.1 Extracting some information
-    artist_name = artist.json()['name']
-    artist_popularity = artist.json()['popularity']
-    artist_followers = artist.json()['followers']['total']
-    artist_genres = artist.json()['genres']
+    artist_name = artist['name']
+    artist_popularity = artist['popularity']
+    artist_followers = artist['followers']['total']
+    artist_genres = artist['genres']
 
     print(f'Artist Name: {artist_name}')
     print(f'Artist Popularity: {artist_popularity}/100')
@@ -117,16 +117,16 @@ def main():
     # 3. Get album data
     print()
     print('3. Album data\n')
-    id_album = track.json()['album']['id']
+    id_album = track['album']['id']
 
     album = get_album(id_album)
 
     # 3.1 Extracting some information
-    album_name = album.json()['name']
-    album_type = album.json()['album_type']
-    album_release_date = album.json()['release_date']
-    album_total_tracks = album.json()['total_tracks']
-    album_popularity = album.json()['popularity']
+    album_name = album['name']
+    album_type = album['album_type']
+    album_release_date = album['release_date']
+    album_total_tracks = album['total_tracks']
+    album_popularity = album['popularity']
 
     print(f'Album Name: {album_name}')
     print(f'Album Type: {album_type}')
