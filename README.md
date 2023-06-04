@@ -1,4 +1,19 @@
-# Projeto Spotify - Exploratory Data Analysis
+# Análise Exploratória de Dados - Spotify
+
+## Integrantes
+
+## Tabela
+
+| Nome | RA |
+|------|-----------|
+| Guilherme Samuel de Souza Barbosa | 19.00012-0 |
+| Guilherme Cury Galli | 19.00374-9 |
+| Matheus dos Santos Galbiati | 19.01324-8 |
+| Fernando Laiser F Kon | 19.01336-0 |
+| Igor Eiki Ferreira Kubota | 19.02466-5 |
+| Gustavo Consoleti | 19.00715-9 |
+
+
 
 O objetivo do projeto é a construção completa de um EDA (Exploratory Data Analysis) sobre o conjunto de dados da API do spotify. 
 
