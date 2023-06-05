@@ -30,7 +30,7 @@ Ao final, foi respondido perguntas a respeito das principais características da
 
 O projeto foi dividido principalmente em dois notebooks, o "01_extração.ipynb" que foi utilizado para realizar a extração, tratamento  e limpeza de dados provenientes do _Spotify Million Playlist Dataset_ utilizando a API oficial do Spotify, formando assim os datasets utilizados, que se encontra no outro repositório do projeto , portanto não é necessário rodá-lo.
 
-No notebook "02_EDA.ipynb" foram utilizados os datasets criados, tratando novamente os dados para realização de uma análise quantitativa. Com os dados tratados e outliers removidos, é feita a análise exploratória em cima, como correlação entre as variáveis. Somente esse notebook deve ser rodado para a exibição do projeto.
+No notebook "02_EDA.ipynb" foram utilizados os datasets criados, tratando novamente os dados para realização de uma análise quantitativa. Com os dados tratados e outliers removidos, é feita a análise exploratória em cima, como correlação entre as variáveis. **Somente esse notebook deve ser rodado para a exibição do projeto**.
 
 
 ## Dotenv (24/05/2023)
